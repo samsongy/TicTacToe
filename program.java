@@ -1,36 +1,39 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Program {
 
-    public static void Gameboard(){
-
-
-
-
-
-
+    public static void Gameboard(String[][] slots){
 
         for(int i=0; i<3; i++){
             System.out.println("-------");
-            for(int j=0; j<4; j++){
-                System.out.print("| ");
-
+            for(int j=0; j<3; j++){
+                System.out.print("|" + slots[i][j]);
             }
+            System.out.print("|");
             System.out.println();
         }
         System.out.println("-------");
-
-
-
 
     }
 
     public static void main(String[] args) {
         System.out.println("\nWelcome to TicTacToe\n\n");   
 
-        Gameboard();
+        String[][] boardSlots = new String[3][3];
+
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                if(boardSlots[i][j] == null) {
+                    boardSlots[i][j] = " ";
+                }
+            }
+        }
+
+        Gameboard(boardSlots);
+
         
-        boolean continueGame = true;
+        //boolean continueGame = true;
 
        /* while(continueGame){
 
