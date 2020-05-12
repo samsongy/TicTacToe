@@ -1,12 +1,41 @@
 import java.util.Scanner;
 
 public class Program {
+
+    public static void Gameboard(){
+
+
+
+
+
+
+
+        for(int i=0; i<3; i++){
+            System.out.println("-------");
+            for(int j=0; j<4; j++){
+                System.out.print("| ");
+
+            }
+            System.out.println();
+        }
+        System.out.println("-------");
+
+
+
+
+    }
+
     public static void main(String[] args) {
         System.out.println("\nWelcome to TicTacToe\n\n");   
+
+        Gameboard();
         
         boolean continueGame = true;
 
-        while(continueGame){
+       /* while(continueGame){
+
+            //create gameboard method
+
 
 
             Scanner sc = new Scanner(System.in);
@@ -36,10 +65,13 @@ public class Program {
                     }
 
             }
+            
 
             
 
         }
+
+        */
 
     }
 }
