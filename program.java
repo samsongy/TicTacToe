@@ -48,6 +48,22 @@ public class Program {
 
     }
 
+    public static String CompMarker(String userMarker){
+        String compMove = null;
+        
+        if(userMarker.equals("x")){
+            compMove = "o";
+        }
+
+        if (userMarker.equals("o")){
+            compMove = "x";
+        }
+
+
+        return compMove;
+
+    }
+
     //create coin toss method to figure out who goes first
 
     public static void main(String[] args) {
@@ -72,8 +88,9 @@ public class Program {
 
         //testing
         String userMarker = UserMarker();
-        System.out.println(userMarker);
-        //need to create a method that assigns comp marker based on userMarker
+        System.out.println("user marker: " + userMarker);
+        String compMarker = CompMarker(userMarker);
+        System.out.println("comp marker: " + compMarker);
 
 
 
