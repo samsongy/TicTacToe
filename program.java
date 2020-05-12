@@ -27,34 +27,53 @@ public class Program {
 
     public static void UpdateGameboard(String[][] slots, String marker, int row, int column){
 
+
         slots[row][column] = marker;
 
     }
 
+    public static String UserMarker(){
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Select your game marker (x/o): ");
+        String marker = sc.next();
+
+        while(!marker.equals("x") && !marker.equals("o")){
+            System.out.print("Please select a valid game marker (x/o): ");
+            marker = sc.next();
+        }
+
+        return marker;
+
+    }
+
+    //create coin toss method to figure out who goes first
+
     public static void main(String[] args) {
         System.out.println("\nWelcome to TicTacToe\n\n");   
 
-        Scanner sc = new Scanner(System.in);
-        String[][] boardSlots = new String[3][3];
+        //Scanner sc = new Scanner(System.in);
+        //String[][] boardSlots = new String[3][3];
 
-        Gameboard(boardSlots);
+        // Gameboard(boardSlots);
 
-        System.out.println("\n\n");
+        // System.out.println("\n\n");
         
         // System.out.print("Which marker do you want to be? (x/o): ");
         // String marker = sc.next();
 
+        
+
+
+        //UpdateGameboard(boardSlots, marker, row, column);
+        //Gameboard(boardSlots);
+
+
         //testing
-        String marker = "x";
-        int row = 1;
-        int column = 1;
-
-
-        UpdateGameboard(boardSlots, marker, row, column);
-        Gameboard(boardSlots);
-
-
-
+        String userMarker = UserMarker();
+        System.out.println(userMarker);
+        //need to create a method that assigns comp marker based on userMarker
 
 
 
