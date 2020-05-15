@@ -13,6 +13,7 @@ public class Program {
             }
         }
 
+        System.out.println();
         for(int i=0; i<3; i++){
             System.out.println("-------");
             for(int j=0; j<3; j++){
@@ -28,7 +29,7 @@ public class Program {
     public static void UpdateGameboard(String[][] slots, String marker, int row, int column){
 
 
-        slots[row][column] = marker;
+        slots[column][row] = marker;
 
     }
 
@@ -99,29 +100,29 @@ public class Program {
     
 
     public static void main(String[] args) {
-        System.out.println("\nWelcome to TicTacToe\n");   
+        System.out.println("\nWelcome to TicTacToe");   
 
-        // Scanner sc = new Scanner(System.in);
-        // String[][] boardSlots = new String[3][3];
+        Scanner sc = new Scanner(System.in);
+        String[][] boardSlots = new String[3][3];
 
-        // PrintGameboard(boardSlots);
-        
-        // System.out.print("\nWhich marker do you want to be? (x/o): ");
-
-        // String userMarker = UserMarker();
-        // String compMarker = CompMarker(userMarker);
-
+        PrintGameboard(boardSlots);
         
 
+        String userMarker = UserMarker();
+        String compMarker = CompMarker(userMarker);
+
+        
 
         int[] coordinates = new int[2];
         coordinates = PlayerMove(coordinates);
 
-        int column = coordinates[0];
-        int row = coordinates[1];
+        int row = coordinates[0];
+        int column = coordinates[1];
 
-        System.out.println("column: " + column);
-        System.out.println("row: " + row);
+        UpdateGameboard(boardSlots, userMarker, row, column);
+        PrintGameboard(boardSlots);
+
+        
 
         //need to pass value of methods to variables in main
 
