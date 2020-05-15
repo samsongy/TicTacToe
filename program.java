@@ -14,7 +14,6 @@ public class Program {
             System.out.println();
         }
         System.out.println("-------");
-
     }
 
     public static void CleanGameboard(String[][] slots){
@@ -24,21 +23,19 @@ public class Program {
                 slots[i][j] = " ";
             }
         }
-
     }
 
     public static void UpdateGameboard(String[][] slots, String marker, int row, int column){
-
 
         slots[column][row] = marker;
 
     }
 
-    public static String UserMarker(){
+    public static String SetUserMarker(){
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Select your game marker (x/o): ");
+        System.out.print("\nSelect your marker (x/o): ");
         String marker = sc.next();
 
         while(!marker.equals("x") && !marker.equals("o")){
@@ -47,10 +44,9 @@ public class Program {
         }
 
         return marker;
-
     }
 
-    public static String CompMarker(String userMarker){
+    public static String SetCompMarker(String userMarker){
         String compMove = null;
         
         if(userMarker.equals("x")){
@@ -61,18 +57,15 @@ public class Program {
             compMove = "x";
         }
 
-
         return compMove;
-
     }
 
 
-    public static int[] PlayerMove(int[] coordinates){
+    public static int[] GetPlayerMove(int[] coordinates){
 
         Scanner sc = new Scanner(System.in);
 
-
-        System.out.print("\n\nSelect the horizontal coordinate (1, 2, 3): ");
+        System.out.print("\nSelect the horizontal coordinate (1, 2, 3): ");
         coordinates[0] = sc.nextInt() - 1;
 
         while (coordinates[0] > 2 || coordinates[0] < 0) {
@@ -88,75 +81,35 @@ public class Program {
             coordinates[1] = sc.nextInt() - 1;
         }
 
-
         return coordinates;
-    
     }
-
-    //create coin toss method to figure out who goes first
-    //create a comp move method 
-    //create a player move method
-
-
-    
-
     public static void main(String[] args) {
+
         System.out.println("\nWelcome to TicTacToe");   
 
-        Scanner sc = new Scanner(System.in);
-        String[][] boardSlots = new String[3][3];
-
-
-        CleanGameboard(boardSlots);
-        PrintGameboard(boardSlots);
-        
-
-        String userMarker = UserMarker();
-        String compMarker = CompMarker(userMarker);
-
-        
-
-        int[] coordinates = new int[2];
-        coordinates = PlayerMove(coordinates);
-
-        int row = coordinates[0];
-        int column = coordinates[1];
-
-        UpdateGameboard(boardSlots, userMarker, row, column);
-        PrintGameboard(boardSlots);
-
-        CleanGameboard(boardSlots);
-        PrintGameboard(boardSlots);
-
-        
-
-        //need to pass value of methods to variables in main
-
-
-
-
-
-
-
-
-
-
-        
-        //UpdateGameboard(boardSlots);
-
-        
-        //boolean continueGame = true;
-
-       /* while(continueGame){
-
-            //create gameboard method
-
-
+        boolean continueGame = true;
+        while(continueGame){
 
             Scanner sc = new Scanner(System.in);
+            String[][] boardSlots = new String[3][3];
 
-            System.out.println("Would you like to play again? (y/n):");
-            String userResponse = sc.nextLine();
+            CleanGameboard(boardSlots);
+            PrintGameboard(boardSlots);
+            
+            String userMarker = SetUserMarker();
+            String compMarker = SetCompMarker(userMarker);
+
+            int[] coordinates = new int[2];
+            coordinates = GetPlayerMove(coordinates);
+
+            int row = coordinates[0];
+            int column = coordinates[1];
+
+            UpdateGameboard(boardSlots, userMarker, row, column);
+            PrintGameboard(boardSlots);
+        
+            System.out.print("\nWould you like to play again? (y/n):");
+            String userResponse = sc.next();
 
             switch(userResponse){
                 case "y":
@@ -167,8 +120,8 @@ public class Program {
                     break;
                 default:
                     while(!userResponse.equals("y") && !userResponse.equals("n")){
-                        System.out.println("Please select either y or n");
-                        userResponse = sc.nextLine();
+                        System.out.print("Please select either y or n: ");
+                        userResponse = sc.next();
 
                         if(userResponse.equals("y")){
                             continueGame = true;
@@ -178,15 +131,13 @@ public class Program {
                             continueGame = false;
                         }
                     }
-
             }
-            
-
-            
-
         }
 
-        */
+        System.out.println("\nThanks for Playing! :)");   
+
+
+        
 
     }
 }
