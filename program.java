@@ -25,11 +25,11 @@ public class Program {
         }
     }
 
-    public static void UpdateGameboard(String[][] slots, String marker, int row, int column){
+    // public static void UpdateGameboard(String[][] slots, String marker, int row, int column){
 
-        slots[column][row] = marker;
+    //     slots[column][row] = marker;
 
-    }
+    // }
 
     public static String SetUserMarker(){
 
@@ -60,8 +60,12 @@ public class Program {
         return compMove;
     }
 
+    public static void SetComputerMove(String computerMarker, String[][] slots){
 
-    public static int[] GetPlayerMove(int[] coordinates){
+    }
+
+
+    public static void SetPlayerMove(int[] coordinates, String[][] slots, String marker){
 
         Scanner sc = new Scanner(System.in);
 
@@ -81,7 +85,7 @@ public class Program {
             coordinates[1] = sc.nextInt() - 1;
         }
 
-        return coordinates;
+        slots[coordinates[1]][coordinates[0]] = marker;
     }
     public static void main(String[] args) {
 
@@ -100,12 +104,12 @@ public class Program {
             String compMarker = SetCompMarker(userMarker);
 
             int[] coordinates = new int[2];
-            coordinates = GetPlayerMove(coordinates);
+            SetPlayerMove(coordinates, boardSlots, userMarker);
 
             int row = coordinates[0];
             int column = coordinates[1];
 
-            UpdateGameboard(boardSlots, userMarker, row, column);
+            
             PrintGameboard(boardSlots);
         
             System.out.print("\nWould you like to play again? (y/n):");
