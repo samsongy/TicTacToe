@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Program {
 
-    public static void Gameboard(String[][] slots){
+    public static void PrintGameboard(String[][] slots){
 
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
@@ -65,18 +65,30 @@ public class Program {
     }
 
 
-    public static void PlayerMove(int x, int y){
+    public static int[] PlayerMove(int[] coordinates){
 
         Scanner sc = new Scanner(System.in);
 
 
-        System.out.println("Player Move:");
-        System.out.print("Choose row: ");
-        x = sc.nextInt();
-        System.out.print("Choose column: ");
-        y = sc.nextInt();
+        System.out.print("\n\nSelect the horizontal coordinate (1, 2, 3): ");
+        coordinates[0] = sc.nextInt() - 1;
+
+        while (coordinates[0] > 2 || coordinates[0] < 0) {
+            System.out.print("Please select 1, 2, or 3: ");
+            coordinates[0] = sc.nextInt() - 1;
+        }
+
+        System.out.print("Select the vertical coordinate (1, 2, 3): ");
+        coordinates[1] = sc.nextInt() - 1;
+
+        while (coordinates[1] > 2 || coordinates[1] < 0) {
+            System.out.print("Please select 1, 2, or 3: ");
+            coordinates[1] = sc.nextInt() - 1;
+        }
 
 
+        return coordinates;
+    
     }
 
     //create coin toss method to figure out who goes first
@@ -87,47 +99,26 @@ public class Program {
     
 
     public static void main(String[] args) {
-        System.out.println("\nWelcome to TicTacToe\n\n");   
+        System.out.println("\nWelcome to TicTacToe\n");   
 
-        Scanner sc = new Scanner(System.in);
-        //String[][] boardSlots = new String[3][3];
+        // Scanner sc = new Scanner(System.in);
+        // String[][] boardSlots = new String[3][3];
 
-        // Gameboard(boardSlots);
-
-        // System.out.println("\n\n");
+        // PrintGameboard(boardSlots);
         
-        // System.out.print("Which marker do you want to be? (x/o): ");
-        // String marker = sc.next();
+        // System.out.print("\nWhich marker do you want to be? (x/o): ");
 
-        
-
-
-        //UpdateGameboard(boardSlots, marker, row, column);
-        //Gameboard(boardSlots);
-
-
-        //testing
         // String userMarker = UserMarker();
-        // System.out.println("user marker: " + userMarker);
         // String compMarker = CompMarker(userMarker);
-        // System.out.println("comp marker: " + compMarker);
+
+        
 
 
-        System.out.print("Select the horizontal coordinate (1, 2, 3): ");
-        int column = sc.nextInt() - 1;
+        int[] coordinates = new int[2];
+        coordinates = PlayerMove(coordinates);
 
-        while (column > 3 || column < 0) {
-            System.out.print("Please select 1, 2, or 3: ");
-            column = sc.nextInt() - 1;
-        }
-
-        System.out.print("Select the vertical coordinate (1, 2, 3): ");
-        int row = sc.nextInt() - 1;
-
-        while (row > 3 || row < 0) {
-            System.out.print("Please select 1, 2, or 3: ");
-            row = sc.nextInt() - 1;
-        }
+        int column = coordinates[0];
+        int row = coordinates[1];
 
         System.out.println("column: " + column);
         System.out.println("row: " + row);
