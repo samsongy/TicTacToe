@@ -4,15 +4,6 @@ import java.util.Arrays;
 public class Program {
 
     public static void PrintGameboard(String[][] slots){
-
-        for(int i=0; i<3; i++){
-            for(int j=0; j<3; j++){
-                if(slots[i][j] == null) {
-                    slots[i][j] = " ";
-                }
-            }
-        }
-
         System.out.println();
         for(int i=0; i<3; i++){
             System.out.println("-------");
@@ -23,6 +14,16 @@ public class Program {
             System.out.println();
         }
         System.out.println("-------");
+
+    }
+
+    public static void CleanGameboard(String[][] slots){
+
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                slots[i][j] = " ";
+            }
+        }
 
     }
 
@@ -105,6 +106,8 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         String[][] boardSlots = new String[3][3];
 
+
+        CleanGameboard(boardSlots);
         PrintGameboard(boardSlots);
         
 
@@ -120,6 +123,9 @@ public class Program {
         int column = coordinates[1];
 
         UpdateGameboard(boardSlots, userMarker, row, column);
+        PrintGameboard(boardSlots);
+
+        CleanGameboard(boardSlots);
         PrintGameboard(boardSlots);
 
         
