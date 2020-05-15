@@ -64,12 +64,32 @@ public class Program {
 
     }
 
+
+    public static void PlayerMove(int x, int y){
+
+        Scanner sc = new Scanner(System.in);
+
+
+        System.out.println("Player Move:");
+        System.out.print("Choose row: ");
+        x = sc.nextInt();
+        System.out.print("Choose column: ");
+        y = sc.nextInt();
+
+
+    }
+
     //create coin toss method to figure out who goes first
+    //create a comp move method 
+    //create a player move method
+
+
+    
 
     public static void main(String[] args) {
         System.out.println("\nWelcome to TicTacToe\n\n");   
 
-        //Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         //String[][] boardSlots = new String[3][3];
 
         // Gameboard(boardSlots);
@@ -87,10 +107,39 @@ public class Program {
 
 
         //testing
-        String userMarker = UserMarker();
-        System.out.println("user marker: " + userMarker);
-        String compMarker = CompMarker(userMarker);
-        System.out.println("comp marker: " + compMarker);
+        // String userMarker = UserMarker();
+        // System.out.println("user marker: " + userMarker);
+        // String compMarker = CompMarker(userMarker);
+        // System.out.println("comp marker: " + compMarker);
+
+
+        System.out.print("Select the horizontal coordinate (1, 2, 3): ");
+        int column = sc.nextInt() - 1;
+
+        while (column > 3 || column < 0) {
+            System.out.print("Please select 1, 2, or 3: ");
+            column = sc.nextInt() - 1;
+        }
+
+        System.out.print("Select the vertical coordinate (1, 2, 3): ");
+        int row = sc.nextInt() - 1;
+
+        while (row > 3 || row < 0) {
+            System.out.print("Please select 1, 2, or 3: ");
+            row = sc.nextInt() - 1;
+        }
+
+        System.out.println("column: " + column);
+        System.out.println("row: " + row);
+
+        //need to pass value of methods to variables in main
+
+
+
+
+
+
+
 
 
 
