@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Program {
 
@@ -25,11 +26,6 @@ public class Program {
         }
     }
 
-    // public static void UpdateGameboard(String[][] slots, String marker, int row, int column){
-
-    //     slots[column][row] = marker;
-
-    // }
 
     public static String SetUserMarker(){
 
@@ -60,11 +56,6 @@ public class Program {
         return compMove;
     }
 
-    public static void SetComputerMove(String computerMarker, String[][] slots){
-
-    }
-
-
     public static void SetPlayerMove(int[] coordinates, String[][] slots, String marker){
 
         Scanner sc = new Scanner(System.in);
@@ -87,6 +78,28 @@ public class Program {
 
         slots[coordinates[1]][coordinates[0]] = marker;
     }
+
+    public static void SetComputerMove(String computerMarker, String[][] slots){
+
+    }
+
+
+    public static boolean CoinToss(){
+        boolean userTurn= true;
+        
+        Random rand = new Random();
+        int coinToss = rand.nextInt(2);
+
+        if(coinToss == 0){
+            userTurn = false;
+        }
+
+        if(coinToss == 1){
+            userTurn = true;
+        }
+
+        return userTurn;
+    }
     public static void main(String[] args) {
 
         System.out.println("\nWelcome to TicTacToe");   
@@ -103,14 +116,19 @@ public class Program {
             String userMarker = SetUserMarker();
             String compMarker = SetCompMarker(userMarker);
 
-            int[] coordinates = new int[2];
-            SetPlayerMove(coordinates, boardSlots, userMarker);
+            boolean userTurn = CoinToss();
+            if(userTurn) {
+                System.out.println("You won the coin toss, you move first");
 
-            int row = coordinates[0];
-            int column = coordinates[1];
+            } else {
+                System.out.println("You lost the coin toss, you move second");
+            }
+
+            // int[] coordinates = new int[2];
+            // SetPlayerMove(coordinates, boardSlots, userMarker);
+            // PrintGameboard(boardSlots);
 
             
-            PrintGameboard(boardSlots);
         
             System.out.print("\nWould you like to play again? (y/n):");
             String userResponse = sc.next();
@@ -139,9 +157,5 @@ public class Program {
         }
 
         System.out.println("\nThanks for Playing! :)");   
-
-
-        
-
     }
 }
