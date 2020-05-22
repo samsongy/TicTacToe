@@ -57,7 +57,6 @@ public class Program {
     }
 
     public static void SetPlayerMove(int[] coordinates, String[][] slots, String marker){
-
         Scanner sc = new Scanner(System.in);
 
         System.out.print("\nSelect the horizontal coordinate (1, 2, 3): ");
@@ -77,15 +76,20 @@ public class Program {
         }
 
         slots[coordinates[1]][coordinates[0]] = marker;
+
+        System.out.println("\nPlayer Move: ");
     }
 
     public static void SetComputerMove(String computerMarker, String[][] slots){
+
 
         Random rand = new Random();
         int x = rand.nextInt(3);
         int y = rand.nextInt(3);
 
         slots[x][y] = computerMarker;
+        System.out.println("Computer Move: ");
+
 
 
     }
@@ -123,21 +127,34 @@ public class Program {
             String userMarker = SetUserMarker();
             String compMarker = SetCompMarker(userMarker);
 
-            // boolean userTurn = CoinToss();
-            // if(userTurn) {
-            //     System.out.println("You won the coin toss, you move first");
+            boolean userTurn = CoinToss();
 
-            // } else {
-            //     System.out.println("You lost the coin toss, you move second");
-            // }
+            if(userTurn) {
+                System.out.println("You won the coin toss, you move first\n");
 
-            // int[] coordinates = new int[2];
-            // SetPlayerMove(coordinates, boardSlots, userMarker);
-            
-            SetComputerMove(compMarker, boardSlots);
-            PrintGameboard(boardSlots);
+                int[] coordinates = new int[2];
+                SetPlayerMove(coordinates, boardSlots, userMarker);
 
-            
+                PrintGameboard(boardSlots);
+
+                SetComputerMove(compMarker, boardSlots);
+
+                PrintGameboard(boardSlots);
+
+            } else {
+                System.out.println("You lost the coin toss, you move second\n");
+
+
+                SetComputerMove(compMarker, boardSlots);
+
+                PrintGameboard(boardSlots);
+
+                int[] coordinates = new int[2];
+                SetPlayerMove(coordinates, boardSlots, userMarker);
+
+                PrintGameboard(boardSlots);
+            }
+
         
             System.out.print("\nWould you like to play again? (y/n):");
             String userResponse = sc.next();
