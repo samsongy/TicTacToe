@@ -59,23 +59,34 @@ public class Program {
     public static void SetPlayerMove(int[] coordinates, String[][] slots, String marker){
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("\nSelect the horizontal coordinate (1, 2, 3): ");
-        coordinates[0] = sc.nextInt() - 1;
+        boolean endOfMove = false;
 
-        while (coordinates[0] > 2 || coordinates[0] < 0) {
-            System.out.print("Please select 1, 2, or 3: ");
+        while(!endOfMove) {
+            System.out.print("\nSelect the vertical coordinate (1, 2, 3): ");
             coordinates[0] = sc.nextInt() - 1;
-        }
 
-        System.out.print("Select the vertical coordinate (1, 2, 3): ");
-        coordinates[1] = sc.nextInt() - 1;
+            while (coordinates[0] > 2 || coordinates[0] < 0) {
+                System.out.print("Please select 1, 2, or 3: ");
+                coordinates[0] = sc.nextInt() - 1;
+            }
 
-        while (coordinates[1] > 2 || coordinates[1] < 0) {
-            System.out.print("Please select 1, 2, or 3: ");
+            System.out.print("Select the horizontal coordinate (1, 2, 3): ");
             coordinates[1] = sc.nextInt() - 1;
+
+            while (coordinates[1] > 2 || coordinates[1] < 0) {
+                System.out.print("Please select 1, 2, or 3: ");
+                coordinates[1] = sc.nextInt() - 1;
+            }
+
+            if(slots[coordinates[0]][coordinates[1]] != " ") {
+                System.out.println("\nSpace is already filled, pick another spot");
+            } else {
+                endOfMove = true;
+            }
+
         }
 
-        slots[coordinates[1]][coordinates[0]] = marker;
+        slots[coordinates[0]][coordinates[1]] = marker;
 
         System.out.println("\nPlayer Move: ");
     }
@@ -159,12 +170,18 @@ public class Program {
             //     PrintGameboard(boardSlots);
             // }
 
+            
 
-            //testing to see if comp move method will only move on an open spot
-            for(int i = 0; i < 9; i++){
-                SetComputerMove(compMarker, boardSlots);
-                PrintGameboard(boardSlots);
-            }
+            //testing player move for illegal 
+            int[] coordinates = new int[2];
+
+            SetComputerMove(compMarker, boardSlots);
+            PrintGameboard(boardSlots);
+            SetPlayerMove(coordinates, boardSlots, userMarker);
+            PrintGameboard(boardSlots);
+
+
+            
             
 
         
