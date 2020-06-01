@@ -152,24 +152,28 @@ public class program {
     }
 
 
-    // public static boolean CoinToss(){
-    //     boolean userTurn= true;
+    public static boolean CoinToss(){
+        boolean userTurn= true;
         
-    //     Random rand = new Random();
-    //     int coinToss = rand.nextInt(2);
+        Random rand = new Random();
+        int coinToss = rand.nextInt(2);
 
-    //     if(coinToss == 0){
-    //         System.out.println("\nYou lost the coin toss, you move second");
-    //         userTurn = false;
-    //     }
+        if(coinToss == 0){
+            System.out.println("\nYou lost the coin toss, you move second");
+            userTurn = false;
+        }
 
-    //     if(coinToss == 1){
-    //         System.out.println("\nYou won the coin toss, you move first");
-    //         userTurn = true;
-    //     }
+        if(coinToss == 1){
+            System.out.println("\nYou won the coin toss, you move first");
+            userTurn = true;
+        }
 
-    //     return userTurn;
-    // }
+        return userTurn;
+    }
+
+    // public static String WinMessage(){}
+
+
     public static void main(String[] args) {
 
         System.out.println("\nWelcome to TicTacToe");   
@@ -180,86 +184,62 @@ public class program {
             Scanner sc = new Scanner(System.in);
             String[][] boardSlots = new String[3][3];
 
+
+            //Game setup
             CleanGameboard(boardSlots);
             PrintGameboard(boardSlots);
             
             String userMarker = SetUserMarker();
-            // String compMarker = SetCompMarker(userMarker);
+            String compMarker = SetCompMarker(userMarker);
 
-            // boolean userTurn = CoinToss();
+            boolean userTurn = CoinToss();
 
 
-
-            //trying to make a loop that will repeat until the end of the game
-            //need to make a check for winner method that returns a boolean
-
-            //while loop, when there is no winner
-
+            //Game start
             boolean winner = false;
             
-            // while(!winner){
-            //     int[] coordinates = new int[2];
-
-            //     for(int i=0; i<9; i++){
-            //         SetPlayerMove(coordinates, boardSlots, userMarker);
-            //         PrintGameboard(boardSlots);
-            //         winner = CheckForWinner(userMarker, boardSlots);
-            //     }
-
-            // }
-
-
-            while(!winner){
-                int[] coordinates = new int[2];
-
-                SetPlayerMove(coordinates, boardSlots, userMarker);
-                PrintGameboard(boardSlots);
-                winner = CheckForWinner(userMarker, boardSlots); 
-
-            }
-
-
+            //loop not ending when user wins and moves 2nd
             
+            if(userTurn) {
+                int moveNumber = 0;
+                while(!winner && moveNumber < 9){
+                    int[] coordinates = new int[2];
+    
+                    //player move
+                    SetPlayerMove(coordinates, boardSlots, userMarker);
+                    PrintGameboard(boardSlots);
+                    winner = CheckForWinner(userMarker, boardSlots); 
+                    moveNumber++;
 
-
-
-
-            // if(userTurn) {
-                //int[] coordinates = new int[2];
-
-            //     int moveNumber = 0;
-            //     while(moveNumber < 9){
-            //         SetPlayerMove(coordinates, boardSlots, userMarker);
-            //         PrintGameboard(boardSlots);
-            //         moveNumber++;
-
-            //         if(moveNumber != 9){
-            //             SetComputerMove(compMarker, boardSlots);
-            //             PrintGameboard(boardSlots);
-            //             moveNumber++;
-            //         }
-                
-            //     }
-
+                    //computer move
+                    if(moveNumber != 9) {
+                        SetComputerMove(compMarker, boardSlots);
+                        PrintGameboard(boardSlots);
+                        moveNumber++;
+                    }
+                    
+                }
                 
 
-            // } else {    
+            } else {    
+                int moveNumber = 0;
+                while(!winner && moveNumber < 9){
+                    int[] coordinates = new int[2];
 
-            //     int moveNumber = 0;
-            //     while(moveNumber < 9){
-            //         SetComputerMove(compMarker, boardSlots);
-            //         PrintGameboard(boardSlots);
-            //         moveNumber++;
+                    SetComputerMove(compMarker, boardSlots);
+                    PrintGameboard(boardSlots);
+                    moveNumber++;
 
-            //         if(moveNumber != 9){
-            //             SetPlayerMove(coordinates, boardSlots, userMarker);
-            //             PrintGameboard(boardSlots);
-            //             moveNumber++;
-            //         }
+                    if(moveNumber != 9){
+                        SetPlayerMove(coordinates, boardSlots, userMarker);
+                        PrintGameboard(boardSlots);
+                        winner = CheckForWinner(userMarker, boardSlots); 
+                        moveNumber++;
+                    }
                 
-            //     }
+                }
                 
-            // }
+            }
 
                 
             
