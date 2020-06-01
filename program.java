@@ -195,11 +195,10 @@ public class program {
             boolean userTurn = CoinToss();
 
 
+
             //Game start
             boolean winner = false;
-            
-            //loop not ending when user wins and moves 2nd
-            
+                        
             if(userTurn) {
                 int moveNumber = 0;
                 while(!winner && moveNumber < 9){
@@ -212,7 +211,7 @@ public class program {
                     moveNumber++;
 
                     //computer move
-                    if(moveNumber != 9) {
+                    if(!winner && moveNumber != 9) {
                         SetComputerMove(compMarker, boardSlots);
                         PrintGameboard(boardSlots);
                         moveNumber++;
@@ -230,7 +229,7 @@ public class program {
                     PrintGameboard(boardSlots);
                     moveNumber++;
 
-                    if(moveNumber != 9){
+                    if(!winner && moveNumber != 9){
                         SetPlayerMove(coordinates, boardSlots, userMarker);
                         PrintGameboard(boardSlots);
                         winner = CheckForWinner(userMarker, boardSlots); 
@@ -240,6 +239,11 @@ public class program {
                 }
                 
             }
+
+
+            //Game end
+            //winner message
+            //win counter (add later)
 
                 
             
