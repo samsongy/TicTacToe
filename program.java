@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Program {
+public class program {
 
     public static void PrintGameboard(String[][] slots){
         System.out.println();
@@ -110,25 +110,66 @@ public class Program {
 
     }
 
+    public static boolean CheckForWinner(String marker, String[][] gameBoard){
 
-    public static boolean CoinToss(){
-        boolean userTurn= true;
+
+
+        //still not working
         
-        Random rand = new Random();
-        int coinToss = rand.nextInt(2);
+        boolean winner = false;
 
-        if(coinToss == 0){
-            System.out.println("\nYou lost the coin toss, you move second");
-            userTurn = false;
+        int row = 0;
+        int column = 0;
+
+        //diagonals
+        if(gameBoard[row][column].equals(marker) && gameBoard[row + 1][column + 1].equals(marker) && gameBoard[row + 2][column + 2].equals(marker)){
+            winner = true;
+        } else if(gameBoard[row][column + 2].equals(marker) && gameBoard[row + 1][column + 1].equals(marker) && gameBoard[row + 2][column].equals(marker)){
+            winner = true;
         }
 
-        if(coinToss == 1){
-            System.out.println("\nYou won the coin toss, you move first");
-            userTurn = true;
+        //rows
+        if(gameBoard[row][column].equals(marker) && gameBoard[row][column + 1].equals(marker) && gameBoard[row][column + 2].equals(marker)){
+            winner = true;
+        } else if(gameBoard[row + 1][column].equals(marker) && gameBoard[row + 1][column + 1].equals(marker) && gameBoard[row + 1][column + 2].equals(marker)){
+            winner = true;
+        } else if(gameBoard[row + 2][column].equals(marker) && gameBoard[row + 2][column + 1].equals(marker) && gameBoard[row + 2][column + 2].equals(marker)){
+            winner = true;
         }
 
-        return userTurn;
+        //columns
+        if(gameBoard[row][column].equals(marker) && gameBoard[row + 1][column].equals(marker) && gameBoard[row + 2][column].equals(marker)){
+            winner = true;
+        } else if(gameBoard[row][column + 1].equals(marker) && gameBoard[row + 1][column + 1].equals(marker) && gameBoard[row + 2][column + 1].equals(marker)){
+            winner = true;
+        } else if(gameBoard[row][column + 2].equals(marker) && gameBoard[row + 1][column + 2].equals(marker) && gameBoard[row + 2][column + 2].equals(marker)){
+            winner = true;
+        }
+
+
+        return winner;
+
     }
+
+
+    // public static boolean CoinToss(){
+    //     boolean userTurn= true;
+        
+    //     Random rand = new Random();
+    //     int coinToss = rand.nextInt(2);
+
+    //     if(coinToss == 0){
+    //         System.out.println("\nYou lost the coin toss, you move second");
+    //         userTurn = false;
+    //     }
+
+    //     if(coinToss == 1){
+    //         System.out.println("\nYou won the coin toss, you move first");
+    //         userTurn = true;
+    //     }
+
+    //     return userTurn;
+    // }
     public static void main(String[] args) {
 
         System.out.println("\nWelcome to TicTacToe");   
@@ -143,9 +184,9 @@ public class Program {
             PrintGameboard(boardSlots);
             
             String userMarker = SetUserMarker();
-            String compMarker = SetCompMarker(userMarker);
+            // String compMarker = SetCompMarker(userMarker);
 
-            boolean userTurn = CoinToss();
+            // boolean userTurn = CoinToss();
 
 
 
@@ -154,56 +195,76 @@ public class Program {
 
             //while loop, when there is no winner
 
+            boolean winner = false;
+            
+            // while(!winner){
+            //     int[] coordinates = new int[2];
+
+            //     for(int i=0; i<9; i++){
+            //         SetPlayerMove(coordinates, boardSlots, userMarker);
+            //         PrintGameboard(boardSlots);
+            //         winner = CheckForWinner(userMarker, boardSlots);
+            //     }
+
+            // }
+
+
+            while(!winner){
                 int[] coordinates = new int[2];
 
-                if(userTurn) {
+                SetPlayerMove(coordinates, boardSlots, userMarker);
+                PrintGameboard(boardSlots);
+                winner = CheckForWinner(userMarker, boardSlots); 
 
-                    int moveNumber = 0;
-                    while(moveNumber < 9){
-                        SetPlayerMove(coordinates, boardSlots, userMarker);
-                        PrintGameboard(boardSlots);
-                        moveNumber++;
+            }
 
-                        if(moveNumber != 9){
-                            SetComputerMove(compMarker, boardSlots);
-                            PrintGameboard(boardSlots);
-                            moveNumber++;
-                        }
-                    
-                    }
 
-                    
-    
-                } else {    
+            
 
-                    int moveNumber = 0;
-                    while(moveNumber < 9){
-                        SetComputerMove(compMarker, boardSlots);
-                        PrintGameboard(boardSlots);
-                        moveNumber++;
 
-                        if(moveNumber != 9){
-                            SetPlayerMove(coordinates, boardSlots, userMarker);
-                            PrintGameboard(boardSlots);
-                            moveNumber++;
-                        }
-                    
-                    }
-                    
-                }
+
+
+            // if(userTurn) {
+                //int[] coordinates = new int[2];
+
+            //     int moveNumber = 0;
+            //     while(moveNumber < 9){
+            //         SetPlayerMove(coordinates, boardSlots, userMarker);
+            //         PrintGameboard(boardSlots);
+            //         moveNumber++;
+
+            //         if(moveNumber != 9){
+            //             SetComputerMove(compMarker, boardSlots);
+            //             PrintGameboard(boardSlots);
+            //             moveNumber++;
+            //         }
+                
+            //     }
+
+                
+
+            // } else {    
+
+            //     int moveNumber = 0;
+            //     while(moveNumber < 9){
+            //         SetComputerMove(compMarker, boardSlots);
+            //         PrintGameboard(boardSlots);
+            //         moveNumber++;
+
+            //         if(moveNumber != 9){
+            //             SetPlayerMove(coordinates, boardSlots, userMarker);
+            //             PrintGameboard(boardSlots);
+            //             moveNumber++;
+            //         }
+                
+            //     }
+                
+            // }
 
                 
             
 
-            
-
-            
-
-            
-
-
-            
-            
+        
 
         
             System.out.print("\nWould you like to play again? (y/n):");
