@@ -111,10 +111,6 @@ public class program {
     }
 
     public static boolean CheckForWinner(String marker, String[][] gameBoard){
-
-
-
-        //still not working
         
         boolean winner = false;
 
@@ -171,12 +167,17 @@ public class program {
         return userTurn;
     }
 
-    // public static String WinMessage(){}
+     
 
 
     public static void main(String[] args) {
 
         System.out.println("\nWelcome to TicTacToe");   
+
+        //winner
+        String winnerMarker;
+        int tieCounter = 0;
+       
 
         boolean continueGame = true;
         while(continueGame){
@@ -211,9 +212,10 @@ public class program {
                     moveNumber++;
 
                     //computer move
-                    if(!winner && moveNumber != 9) {
+                    if(!winner && moveNumber < 9) {
                         SetComputerMove(compMarker, boardSlots);
                         PrintGameboard(boardSlots);
+                        winner = CheckForWinner(compMarker, boardSlots); 
                         moveNumber++;
                     }
                     
@@ -227,9 +229,10 @@ public class program {
 
                     SetComputerMove(compMarker, boardSlots);
                     PrintGameboard(boardSlots);
+                    winner = CheckForWinner(compMarker, boardSlots); 
                     moveNumber++;
 
-                    if(!winner && moveNumber != 9){
+                    if(!winner && moveNumber < 9){
                         SetPlayerMove(coordinates, boardSlots, userMarker);
                         PrintGameboard(boardSlots);
                         winner = CheckForWinner(userMarker, boardSlots); 
@@ -241,9 +244,19 @@ public class program {
             }
 
 
+            if(winner){
+                //print winner, add to win counter
+            } else {
+                System.out.println("\nTie");
+                tieCounter++;
+
+            }
+
+
             //Game end
+            
             //winner message
-            //win counter (add later)
+            //win counter and display
 
                 
             
@@ -277,6 +290,7 @@ public class program {
             }
         }
 
+        System.out.println("\nResults:\tTies: " + tieCounter);   
         System.out.println("\nThanks for Playing! :)");   
     }
 }
