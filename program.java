@@ -62,7 +62,7 @@ public class program {
         boolean endOfMove = false;
 
         while(!endOfMove) {
-            System.out.print("\nSelect the vertical coordinate (1, 2, 3): ");
+            System.out.print("\nSelect the horizontal coordinate (1, 2, 3): ");
             coordinates[0] = sc.nextInt() - 1;
 
             while (coordinates[0] > 2 || coordinates[0] < 0) {
@@ -70,7 +70,7 @@ public class program {
                 coordinates[0] = sc.nextInt() - 1;
             }
 
-            System.out.print("Select the horizontal coordinate (1, 2, 3): ");
+            System.out.print("Select the vertical coordinate (1, 2, 3): ");
             coordinates[1] = sc.nextInt() - 1;
 
             while (coordinates[1] > 2 || coordinates[1] < 0) {
