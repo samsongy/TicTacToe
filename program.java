@@ -174,9 +174,9 @@ public class program {
 
         System.out.println("\nWelcome to TicTacToe");   
 
-        //winner
-        String winnerMarker;
         int tieCounter = 0;
+        int userWins = 0;
+        int compWins = 0;
        
 
         boolean continueGame = true;
@@ -197,8 +197,9 @@ public class program {
 
 
 
-            //Game start
+            //Game start (put in method)
             boolean winner = false;
+            String winnerMarker = null;
                         
             if(userTurn) {
                 int moveNumber = 0;
@@ -209,6 +210,10 @@ public class program {
                     SetPlayerMove(coordinates, boardSlots, userMarker);
                     PrintGameboard(boardSlots);
                     winner = CheckForWinner(userMarker, boardSlots); 
+                    if(winner) {
+                        winnerMarker = userMarker;
+                    }
+
                     moveNumber++;
 
                     //computer move
@@ -216,6 +221,10 @@ public class program {
                         SetComputerMove(compMarker, boardSlots);
                         PrintGameboard(boardSlots);
                         winner = CheckForWinner(compMarker, boardSlots); 
+                        if(winner) {
+                            winnerMarker = compMarker;
+                        }
+
                         moveNumber++;
                     }
                     
@@ -229,13 +238,21 @@ public class program {
 
                     SetComputerMove(compMarker, boardSlots);
                     PrintGameboard(boardSlots);
-                    winner = CheckForWinner(compMarker, boardSlots); 
+                    winner = CheckForWinner(compMarker, boardSlots);
+                    if(winner) {
+                        winnerMarker = compMarker;
+                    }
+
                     moveNumber++;
 
                     if(!winner && moveNumber < 9){
                         SetPlayerMove(coordinates, boardSlots, userMarker);
                         PrintGameboard(boardSlots);
                         winner = CheckForWinner(userMarker, boardSlots); 
+                        if(winner) {
+                            winnerMarker = userMarker;
+                        }
+
                         moveNumber++;
                     }
                 
@@ -244,8 +261,18 @@ public class program {
             }
 
 
+            //put in method
             if(winner){
                 //print winner, add to win counter
+                if(winnerMarker.equals(compMarker)){
+                    System.out.println("\nYou lose...");
+                    compWins++;
+                } else if(winnerMarker.equals(userMarker)) {
+                    System.out.println("\nYou win!!!");
+                    userWins++;
+                } else {
+                    System.out.println("error");
+                }
             } else {
                 System.out.println("\nTie");
                 tieCounter++;
@@ -253,17 +280,14 @@ public class program {
             }
 
 
-            //Game end
             
-            //winner message
-            //win counter and display
 
                 
             
 
         
 
-        
+            //game end (put in method)
             System.out.print("\nWould you like to play again? (y/n):");
             String userResponse = sc.next();
 
@@ -290,7 +314,7 @@ public class program {
             }
         }
 
-        System.out.println("\nResults:\tTies: " + tieCounter);   
+        System.out.println("\nResults:\nPlayer Wins: " + userWins + "\nComputer Wins: " + compWins + "\nTies: " + tieCounter);   
         System.out.println("\nThanks for Playing! :)");   
     }
 }
